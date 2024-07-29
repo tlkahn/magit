@@ -456,9 +456,6 @@ commits before and half after."
    (7 "/a" "Only commits existing directly on ancestry path" "--ancestry-path")
    (6 "/f" "Do not prune history"                            "--full-history")
    (7 "/m" "Prune some history"                              "--simplify-merges")]
-  ["Commit ordering"
-   (magit-log:--*-order)
-   ("-r" "Reverse order" "--reverse")]
   ["Formatting"
    ("-g" "Show graph"          "--graph")          ;1
    ("-c" "Show graph in color" "--color")          ;2
@@ -517,9 +514,6 @@ commits before and half after."
     (7 "/a" "Only commits existing directly on ancestry path" "--ancestry-path")
     (6 "/f" "Do not prune history"                            "--full-history")
     (7 "/m" "Prune some history"                              "--simplify-merges")]
-   ["Commit ordering"
-    (magit-log:--*-order)
-    ("-r" "Reverse order" "--reverse")]
    ["Formatting"
     ("-g" "Show graph"              "--graph")
     ("-c" "Show graph in color"     "--color")
@@ -531,7 +525,6 @@ commits before and half after."
   [:if-not-mode magit-log-mode
    :description "Arguments"
    (magit-log:-n)
-   (magit-log:--*-order)
    ("-g" "Show graph"               "--graph")
    ("-c" "Show graph in color"      "--color")
    ("-d" "Show refnames"            "--decorate")]
@@ -595,14 +588,6 @@ commits before and half after."
   :key "=u"
   :argument "--until="
   :reader #'transient-read-date)
-
-(transient-define-argument magit-log:--*-order ()
-  :description "Order commits by"
-  :class 'transient-switches
-  :key "-o"
-  :argument-format "--%s-order"
-  :argument-regexp "\\(--\\(topo\\|author-date\\|date\\)-order\\)"
-  :choices '("topo" "author-date" "date"))
 
 (transient-define-argument magit-log:--grep ()
   :description "Search messages"
